@@ -1,7 +1,0 @@
-name: BoundaryKill
-main: net.croxis.bukkit.boundarykill.BoundaryKill
-version: 1.2
-author: croxis
-description: >
-             Soft Boundary Management
-             Reduces health of player when they pass the boundary
