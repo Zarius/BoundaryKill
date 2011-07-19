@@ -1,6 +1,6 @@
 name: BoundaryKill
 main: net.croxis.bukkit.boundarykill.BoundaryKill
-version: 1.2
+version: 1.31z
 author: croxis
 description: >
              Soft Boundary Management

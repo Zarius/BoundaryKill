@@ -86,10 +86,11 @@ public class BoundaryKill extends JavaPlugin{
         }
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvent(Event.Type.PLAYER_MOVE, playerListener, Priority.Normal, this);
+		pm.registerEvent(Event.Type.PLAYER_QUIT, playerListener, Priority.Normal, this);
 		pm.registerEvent(Event.Type.VEHICLE_MOVE, vehicleListener, Priority.Normal, this);
 		
 		PluginDescriptionFile pdfFile = this.getDescription();
-        System.out.println( pdfFile.getName() + " version " + pdfFile.getVersion() + " is enabled!" );
+        System.out.println( "["+pdfFile.getName() + ":" + pdfFile.getVersion() + "] enabled!" );
 	}
 	
 	private void updateConfig() {
@@ -113,7 +114,11 @@ public class BoundaryKill extends JavaPlugin{
 		//Adds a player to the out of bound list
 		if(outofBounds.contains(player) != true){
 			outofBounds.add(player);
-			player.sendMessage(ChatColor.RED + outMessage);
+			if (worlddbexception.get(player.getWorld().getName()).contains(player.getName()) == true){
+				player.sendMessage(ChatColor.RED + outMessage + " (You are in the exception list)");
+			} else {
+				player.sendMessage(ChatColor.RED + outMessage);
+			}
 		}
 	}
 	
@@ -146,10 +151,7 @@ public class BoundaryKill extends JavaPlugin{
 		if (worlddb.containsKey(worldName) == false){
 			return;
 		}
-		if (worlddbexception.get(worldName).contains(player.getName()) == true){
-			return;
-		}
-		
+
 		int radius = (Integer) worlddb.get(worldName).get("radius");
 		if (radius == 0){
 			return;

@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.event.player.PlayerListener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
 public class BKPlayerListener extends PlayerListener{
@@ -36,7 +37,7 @@ public class BKPlayerListener extends PlayerListener{
 		} 
 	}
 	
-	public void onPlayerQuit(PlayerEvent event){
+	public void onPlayerQuit(PlayerQuitEvent event){
 		plugin.removePlayer(event.getPlayer());
 	}
 
